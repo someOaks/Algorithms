@@ -9,9 +9,10 @@ import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class BruteCollinearPoints {
-    private ArrayList<LineSegment> linesList;
+    private List<LineSegment> linesList;
     /**
      * Finds all line segments containing 4 points.
      * @param points point
@@ -34,8 +35,8 @@ public class BruteCollinearPoints {
                 }
             }
         }
-        // List<LineSegment> = new ArrayList<>();
-        linesList = new ArrayList<LineSegment>();
+
+        linesList = new ArrayList<>();
         Point[] onLine = new Point[4];
         for (int p = 0; p < points.length - 3; p++)
             for (int q = p + 1; q < points.length - 2; q++)
@@ -44,7 +45,7 @@ public class BruteCollinearPoints {
                        continue;
                     }
                         for (int s = r + 1; s < points.length; s++)
-                            if (!isCollinear(points, p, r, s)) {
+                            if (isCollinear(points, p, r, s)) {
                             onLine[0] = points[p];
                             onLine[1] = points[q];
                             onLine[2] = points[r];
