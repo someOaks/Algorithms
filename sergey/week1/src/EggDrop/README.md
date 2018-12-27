@@ -9,8 +9,8 @@ through n) and plenty of eggs. An egg breaks if it is dropped from floor
 >    Version 0: 1 egg, ≤T  tosses.
 >    Version 1: ~1lg⁡n  eggs and ~1lg⁡n  tosses.
 >    Version 2: ~lg⁡T  eggs and ~2lg⁡T  tosses.
->    Version 3: 2  eggs and ~2n tosses.
->    Version 4: 2  eggs and ≤cT tosses for some fixed constant c.
+>    Version 3: 2  eggs and ~2√n tosses.
+>    Version 4: 2  eggs and ≤c√T tosses for some fixed constant c.
 
 Решение в классе `EggDrop`, в методе `findDeathFloorForEgg2()`.
 

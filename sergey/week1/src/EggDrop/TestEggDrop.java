@@ -13,85 +13,83 @@ public class TestEggDrop {
 
     @Test
     public void testIsBrokenEggFalse() {
-        EggDrop.generateBrokenFloor();
-        assertFalse(EggDrop.isBrokenEgg(EggDrop.BROKEN_FLOOR - 1));
+        EggDrop eggDropper = new EggDrop();
+        assertFalse(eggDropper.isBrokenEgg(eggDropper.getBROKEN_FLOOR() - 1));
     }
 
     @Test
     public void testIsBrokenEggTrue() {
-        EggDrop.generateBrokenFloor();
-        assertTrue(EggDrop.isBrokenEgg(EggDrop.BROKEN_FLOOR));
-        assertTrue(EggDrop.isBrokenEgg(EggDrop.BROKEN_FLOOR + 1));
+        EggDrop eggDropper = new EggDrop();
+        assertTrue(eggDropper.isBrokenEgg(eggDropper.getBROKEN_FLOOR()));
+        assertTrue(eggDropper.isBrokenEgg(eggDropper.getBROKEN_FLOOR() + 1));
     }
 
     @Test
     public void testFindDeathFloorForEgg2False(){
         System.out.println("Test out of range");
-        EggDrop.MAXIMUM_FLOORS = 100;
-        EggDrop.BROKEN_FLOOR = 101;
-        assertEquals(-1, EggDrop.findDeathFloorForEgg2());
+        EggDrop eggDropper = new EggDrop(100, 101);
+        assertEquals(-1, eggDropper.findDeathFloorForEgg2());
     }
 
     @Test
     public void testFindDeathFloorForEgg2TueMiddle(){
-        EggDrop.MAXIMUM_FLOORS = 100;
+        EggDrop eggDropper = new EggDrop(100, 7);
 
-        EggDrop.BROKEN_FLOOR = 7;
-        System.out.println("BROKEN_FLOOR = " + EggDrop.BROKEN_FLOOR);
-        System.out.println("result of " +EggDrop.BROKEN_FLOOR +" is " + EggDrop.findDeathFloorForEgg2());
-        assertEquals(7, EggDrop.findDeathFloorForEgg2());
+//        System.out.println("BROKEN_FLOOR = " + eggDropper.getBROKEN_FLOOR());
+//        System.out.println("result of " + eggDropper.getBROKEN_FLOOR() +" is " + eggDropper.findDeathFloorForEgg2());
+        assertEquals(7, eggDropper.findDeathFloorForEgg2());
 
-        EggDrop.BROKEN_FLOOR = 35;
-        System.out.println("BROKEN_FLOOR = " + EggDrop.BROKEN_FLOOR);
-        System.out.println("result of " +EggDrop.BROKEN_FLOOR +" is " + EggDrop.findDeathFloorForEgg2());
-        assert (35 == EggDrop.findDeathFloorForEgg2());
+        eggDropper = new EggDrop(100, 35);
+//        System.out.println("BROKEN_FLOOR = " + eggDropper.getBROKEN_FLOOR());
+//        System.out.println("result of " + eggDropper.getBROKEN_FLOOR() +" is " + eggDropper.findDeathFloorForEgg2());
+        assertEquals(35, eggDropper.findDeathFloorForEgg2());
 
 
-        EggDrop.BROKEN_FLOOR = 65;
-        System.out.println("BROKEN_FLOOR = " + EggDrop.BROKEN_FLOOR);
-        System.out.println("result of " +EggDrop.BROKEN_FLOOR +" is " + EggDrop.findDeathFloorForEgg2());
-        assert (65 == EggDrop.findDeathFloorForEgg2());
+        eggDropper = new EggDrop(100, 65);
+//        System.out.println("BROKEN_FLOOR = " + eggDropper.getBROKEN_FLOOR());
+//        System.out.println("result of " + eggDropper.getBROKEN_FLOOR() +" is " + eggDropper.findDeathFloorForEgg2());
+        assertEquals(65, eggDropper.findDeathFloorForEgg2());
     }
 
     @Test
     public void testFindDeathFloorForEgg2TueMinimum(){
-        EggDrop.MAXIMUM_FLOORS = 100;
+        EggDrop eggDropper;
 
-        EggDrop.BROKEN_FLOOR = 1;
-        System.out.println("BROKEN_FLOOR = " + EggDrop.BROKEN_FLOOR);
-        System.out.println("result of " +EggDrop.BROKEN_FLOOR +" is " + EggDrop.findDeathFloorForEgg2());
-        assertEquals(1, EggDrop.findDeathFloorForEgg2());
+        eggDropper = new EggDrop(100, 1);
+//        System.out.println("BROKEN_FLOOR = " + eggDropper.getBROKEN_FLOOR());
+//        System.out.println("result of " + eggDropper.getBROKEN_FLOOR() +" is " + eggDropper.findDeathFloorForEgg2());
+        assertEquals(1, eggDropper.findDeathFloorForEgg2());
 
-        EggDrop.BROKEN_FLOOR = 2;
-        System.out.println("BROKEN_FLOOR = " + EggDrop.BROKEN_FLOOR);
-        System.out.println("result of " +EggDrop.BROKEN_FLOOR +" is " + EggDrop.findDeathFloorForEgg2());
-        assertEquals(2, EggDrop.findDeathFloorForEgg2());
+        eggDropper = new EggDrop(100, 2);
+//        System.out.println("BROKEN_FLOOR = " + eggDropper.getBROKEN_FLOOR());
+//        System.out.println("result of " + eggDropper.getBROKEN_FLOOR() +" is " + eggDropper.findDeathFloorForEgg2());
+        assertEquals(2, eggDropper.findDeathFloorForEgg2());
     }
 
     @Test
     public void testFindDeathFloorForEgg2TueMaximum(){
-        EggDrop.MAXIMUM_FLOORS = 100;
+        EggDrop eggDropper;
 
-        EggDrop.BROKEN_FLOOR = 100;
-        System.out.println("BROKEN_FLOOR = " + EggDrop.BROKEN_FLOOR);
-        System.out.println("result of " +EggDrop.BROKEN_FLOOR +" is " + EggDrop.findDeathFloorForEgg2());
-        assert (100 == EggDrop.findDeathFloorForEgg2());
+        eggDropper = new EggDrop(100, 100);
+//        System.out.println("BROKEN_FLOOR = " + eggDropper.getBROKEN_FLOOR());
+//        System.out.println("result of " + eggDropper.getBROKEN_FLOOR() +" is " + eggDropper.findDeathFloorForEgg2());
+        assert (100 == eggDropper.findDeathFloorForEgg2());
 
-        EggDrop.BROKEN_FLOOR = 99;
-        System.out.println("BROKEN_FLOOR = " + EggDrop.BROKEN_FLOOR);
-        System.out.println("result of " +EggDrop.BROKEN_FLOOR +" is " + EggDrop.findDeathFloorForEgg2());
-        assert (99 == EggDrop.findDeathFloorForEgg2());
+        eggDropper = new EggDrop(100, 99);
+//        System.out.println("BROKEN_FLOOR = " + eggDropper.getBROKEN_FLOOR());
+//        System.out.println("result of " + eggDropper.getBROKEN_FLOOR() +" is " + eggDropper.findDeathFloorForEgg2());
+        assert (99 == eggDropper.findDeathFloorForEgg2());
     }
 
     @Test
     public void mainTestFindDeathFloorForEgg2() {
-        EggDrop.MAXIMUM_FLOORS = Math.abs(new Random().nextInt());
-        System.out.println("Now \'" + EggDrop.MAXIMUM_FLOORS + "\' floors!!");
+        EggDrop eggDropper = new EggDrop(Math.abs(new Random().nextInt()));
 
-        EggDrop.generateBrokenFloor();
-        int findIndex = EggDrop.findDeathFloorForEgg2();
+        System.out.println("Now \'" + eggDropper.getMAXIMUM_FLOORS() + "\' floors!!");
+
+        int findIndex = eggDropper.findDeathFloorForEgg2();
         System.out.println("Broken floor was found: " + findIndex);
 
-        assertEquals(EggDrop.BROKEN_FLOOR, findIndex);
+        assertEquals(eggDropper.getBROKEN_FLOOR(), findIndex);
     }
 }
