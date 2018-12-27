@@ -34,6 +34,7 @@ public class TestEggDrop {
 
     @Test
     public void testFindDeathFloorForEgg2TueMiddle(){
+        EggDrop.MAXIMUM_FLOORS = 100;
 
         EggDrop.BROKEN_FLOOR = 7;
         System.out.println("BROKEN_FLOOR = " + EggDrop.BROKEN_FLOOR);
@@ -54,6 +55,8 @@ public class TestEggDrop {
 
     @Test
     public void testFindDeathFloorForEgg2TueMinimum(){
+        EggDrop.MAXIMUM_FLOORS = 100;
+
         EggDrop.BROKEN_FLOOR = 1;
         System.out.println("BROKEN_FLOOR = " + EggDrop.BROKEN_FLOOR);
         System.out.println("result of " +EggDrop.BROKEN_FLOOR +" is " + EggDrop.findDeathFloorForEgg2());
@@ -67,6 +70,7 @@ public class TestEggDrop {
 
     @Test
     public void testFindDeathFloorForEgg2TueMaximum(){
+        EggDrop.MAXIMUM_FLOORS = 100;
 
         EggDrop.BROKEN_FLOOR = 100;
         System.out.println("BROKEN_FLOOR = " + EggDrop.BROKEN_FLOOR);
