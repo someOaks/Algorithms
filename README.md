@@ -1,13 +1,21 @@
 # Algorithms learning collective repository
 
 
-The **product backlog** helps the team break the product into more manageable pieces and build it incrementally in a series of short time periods called sprints. 
+**Product backlog** 
+- helps the team break the product into more manageable pieces and build it incrementally in a series of short time periods called sprints
 
-During the **sprint**, the team meets each day, in a Daily Scrum, to assess progress and make necessary adjustments. 
+During the **sprint**
+- the team meets each day
+- to assess progress
+- to make necessary adjustments
 
-Along the way, the **ScrumMaster** keeps the team focused on its goal. The Scrum Master also removes impediments for the team, so everyone can focus and move forward with their work. 
+**ScrumMaster** 
+- keeps the team focused on its goal
+- removes impediments for the team, so everyone can focus and move forward with their work. 
 
-During sprint planning, the team pulls a small chunk of items from the top of the product backlog to create a sprint backlog, and then decides how to accomplish those items during the next sprint. 
+**During sprint planning**
+- the team pulls a small chunk of items from the top of the product backlog to create a sprint backlog
+- then decides how to accomplish those items during the next sprint. 
 
 
 **Reporting a problem** - name:
