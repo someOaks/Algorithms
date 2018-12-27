@@ -11,7 +11,7 @@ import java.util.*;
 public class BitonicArrayGenerator {
     static final String FILE_NAME = "testBitinicArray" + ".txt";
     static final int ARRAY_SIZE = 2500;
-    static Random r = new Random();
+    private static Random r = new Random();
 
     /**
      * These numbers are not repeated within the same file.
@@ -20,44 +20,48 @@ public class BitonicArrayGenerator {
      */
     public static void main(String[] args) {
 
-        Out out = new Out(FILE_NAME);
-        List list = new ArrayList(ARRAY_SIZE);
+        Out out = new Out(FILE_NAME); // пишет в файл
+
+        ArrayList list = new ArrayList(ARRAY_SIZE);
         ArrayList<Integer> tempList = new ArrayList<>(ARRAY_SIZE / 2);
 
         Object[] tempIntArray;
-        int randomInt = generateRandomInt();
+        int randomInt;
 
+        // Забиваем первую половину листа рандомными числами
         for (int i = 0; i < ARRAY_SIZE / 2; i++ ) {
-
             //System.out.println(randomInt);
-            while (list.contains(randomInt)) randomInt = generateRandomInt();
+            do {
+                randomInt = generateRandomInt();
+            } while (list.contains(randomInt));
             list.add(randomInt);
         }
 
+        // сортируем рандомные числа
         tempIntArray = list.toArray();
-
         Arrays.sort(tempIntArray);
-        list.clear();
-        Collections.addAll(list,  tempIntArray);
+        list.clear(); // и добавляем эти рандомные числа в лист
+        Collections.addAll(list, tempIntArray);
 
-
+        // генерируем вторую половину рандомных чисел
         for (int i = 0; i < ARRAY_SIZE / 2; i++ ) {
-            randomInt = generateRandomInt();
-            //System.out.println(randomInt);
-            while (list.contains(randomInt) || tempList.contains(randomInt)) randomInt = generateRandomInt();
+            do {
+                randomInt = generateRandomInt();
+            } while (list.contains(randomInt) || tempList.contains(randomInt));
             tempList.add(randomInt);
         }
 
+        // сортируем по возрастанию
         tempIntArray = tempList.toArray();
         Arrays.sort(tempIntArray);
-
+        // и записываем в лист в порядке убывания
         for (int i = tempIntArray.length - 1; i >= 0; i--) {
-            list.add((Integer) tempIntArray[i]);
+            list.add(tempIntArray[i]);
         }
 
-
-        for (int i = 0; i < list.size(); i++) {
-            out.println(" " + list.get(i));
+        // пишем в файл.
+        for (Object aList : list) {
+            out.println(" " + aList);
         }
         out.close();
     }
