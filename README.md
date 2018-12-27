@@ -19,10 +19,11 @@ During the **sprint** (стесняясь уточняю: а разве не: ч
 
 ___
 
-**Steps to reproduce/understand** - detailed description, so everyone can understand.
+## Steps to reproduce/understand
+###  detailed description, so everyone can understand.
 1) **Reporting a problem**-name:
   A. **What** is the problem - what happened.
   B. **Where** the problem occurred.
   C. Under **which** circumstances it happened - can be skipped when writing a task.
 
-2)...
+2) ...
