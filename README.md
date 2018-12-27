@@ -22,8 +22,8 @@ ___
 ## Steps to reproduce/understand
 ###  detailed description, so everyone can understand.
 1) **Reporting a problem**-name:
-  A. **What** is the problem - what happened.
-  B. **Where** the problem occurred.
-  C. Under **which** circumstances it happened - can be skipped when writing a task.
+  + **What** is the problem - what happened.
+  + **Where** the problem occurred.
+  + Under **which** circumstances it happened - can be skipped when writing a task.
 
 2) ...
