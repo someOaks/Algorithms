@@ -4,10 +4,15 @@
 **Product backlog** 
 Рelps the team break the product into more manageable pieces and build it incrementally in a series of short time periods called sprints.
 
-During the **sprint** (стесняясь уточняю: а разве не: что сделано, что делаю, что не сделал и что для этого нужно?)
-- the team meets each day
+During the **sprint**:
+- the team meets each day (on standup's)
 - to assess progress
 - to make necessary adjustments
+
+During each **standup** each team member should be ready to answer the following 3 questions:
+- what have you done yesterday? // что сделал вчера?
+- what you will be doing today? // что будешь делать?
+- any blockers? // какие есть блокеры?
 
 **The scrumMasters tasks:** 
 - keeps the team focused on its goal
