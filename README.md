@@ -27,3 +27,9 @@ ___
     + Under **which** circumstances it happened - can be skipped when writing a task.
 
 2) ...
+
+___
+
+## Sprint Organization
+
+*duration* 2 weeks.
