@@ -45,7 +45,7 @@ _Steps:_
   <img src="../assets/w3_1.1.jpg?raw=true" alt="Slopes"/>
 </p>
 
-<table>
+<table  align="center">
   <tr>
    <td>
 <em>Point</em>
@@ -106,7 +106,7 @@ _Steps:_
 
 3.  For the sorted set, find all sub-sets with 3 (or more) dots that have the same slope (and _smaller dot in subset_ bigger comparing to the original set's head (N from _s1_))
 
-<table>
+<table  align="center">
   <tr>
    <td>
 <em>Point</em>
