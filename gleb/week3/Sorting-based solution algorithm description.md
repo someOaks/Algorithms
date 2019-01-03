@@ -45,7 +45,8 @@ _Steps:_
   <img src="../assets/w3_1.1.jpg?raw=true" alt="Slopes"/>
 </p>
 
-<table  align="center">
+<p align="center"></p>
+<table>
   <tr>
    <td>
 <em>Point</em>
@@ -100,7 +101,7 @@ _Steps:_
    </td>
   </tr>
 </table>
-
+<p></p>
 
 > _s2_ = set([N D C R F K L M S B A])
 
