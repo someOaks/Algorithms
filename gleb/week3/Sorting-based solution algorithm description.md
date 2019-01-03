@@ -37,11 +37,10 @@ _Steps:_
 
 1.  Sort the input set of dots by natural order ([link](https://stackoverflow.com/questions/5167928/what-is-natural-ordering-when-we-talk-about-sorting))
 
-`s1 = set([N A B F K S C L R M D])`
+> _s1_ = set([N A B F K S C L R M D])
 
 2.  Sort the new set (s2) according to the angel that each dot create with the head of the original set (s1)
 ![Slopes](../assets/w3_2.jpg)
-
 
 <table>
   <tr>
@@ -100,7 +99,7 @@ _Steps:_
 </table>
 
 
-`s2 = set([N D C R F K L M S B A])`
+> _s2_ = set([N D C R F K L M S B A])
 
 3.  For the sorted set, find all sub-sets with 3 (or more) dots that have the same slope (and _smaller dot in subset_ bigger comparing to the original set's head (N from _s1_))
 
@@ -161,13 +160,13 @@ _Steps:_
 </table>
 
 
-`s2_subset1 = set([K L M])`
+> _s2_subset1_ = set([K L M])
 
 
 
 4.  For each subset fond on the step 4 return line segment with the original set's head (N) and the last dot from each subset:
 
-`liensegment1 = [N, M]`
+> _liensegment1_ = [N, M]
 
 5.  Change head to the next dot and repeat from step 1 if there are elements left
 
