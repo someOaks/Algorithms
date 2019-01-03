@@ -1,55 +1,49 @@
-## Algorithms for recognizing line patterns in a given set of points.
+<h2>Algorithms for recognizing line patterns in a given set of points.</h2>
+
 
 Authors: Gleb
 
 Reviewers: Slava [X] Ivanna [ ] Sergey [ ]
 
-
-## Preamble
-
-This document describes a quick algorithm for searching all collinear points. The problem is described in the following [document](http://coursera.cs.princeton.edu/algs4/assignments/collinear.html). 
+<h2>Preamble</h2>
 
 
-## Problem
+This document describes a quick algorithm for searching all collinear points. The problem is described in the following [document](http://coursera.cs.princeton.edu/algs4/assignments/collinear.html).
+
+<h2>Problem</h2>
+
 
 From the set of given dots, on a 2D plane, find all maximal lines, that contain at least 4 dots...
 
+<h2>Solution</h2>
 
-## Solution
 
 The algorithm, on a high level, can be described as following:
 
-_Input:_ Set of dots 
+_Input:_ Set of dots
 
-[S M A L B K R C F D N]
+    [S M A L B K R C F D N]
 
 _Output:_ Set of line segments
 
-	[M N] (or [N M]), [A D] (or [D A])
+    [M N] (or [N M]), [A D] (or [D A])
 
 
 
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Algorithms-for0.jpg). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/Algorithms-for0.jpg "image_tooltip")
+![Points](../assets/w3-1.jpg)
 
 
 _Steps:_
 
 
+1.  Sort the input set of dots by natural order ([link](https://stackoverflow.com/questions/5167928/what-is-natural-ordering-when-we-talk-about-sorting))
 
-1.  Sort the input set of dots by natural order ([link](https://stackoverflow.com/questions/5167928/what-is-natural-ordering-when-we-talk-about-sorting)) \
-_s1_ = set([N A B F K S C L R M D])
-1.  Sort the new set (s2) according to the angel that each dot create with the head of the original set (s1) 
+    _s1_ = set([N A B F K S C L R M D])
 
-    
-
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Algorithms-for1.jpg). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+2.  Sort the new set (s2) according to the angel that each dot create with the head of the original set (s1)
 
 
-![alt_text](images/Algorithms-for1.jpg "image_tooltip")
-
+![Slopes](../assets/w3-2.jpg)
 
 
 <table>
@@ -109,12 +103,9 @@ _s1_ = set([N A B F K S C L R M D])
 </table>
 
 
-
     _s2_ = set([N D C R F K L M S B A])
 
-
-
-1.  For the sorted set, find all sub-sets with 3 (or more) dots that have the same slope (and _smaller dot in subset_ bigger comparing to the original set's head (N from _s1_))
+3.  For the sorted set, find all sub-sets with 3 (or more) dots that have the same slope (and _smaller dot in subset_ bigger comparing to the original set's head (N from _s1_))
 
 <table>
   <tr>
@@ -173,16 +164,17 @@ _s1_ = set([N A B F K S C L R M D])
 </table>
 
 
-
     _s2_subset1_ = set([K L M])
 
 
 
-1.  For each subset fond on the step 4 return line segment with the original set's head (N) and the last dot from each subset: \
-liensegment1 = [N, M]
-1.  Change head to the next dot and repeat from step 1 if there are elements left
+4.  For each subset fond on the step 4 return line segment with the original set's head (N) and the last dot from each subset:
 
+    liensegment1 = [N, M]
 
-## Alternatives
+5.  Change head to the next dot and repeat from step 1 if there are elements left
+
+<h2>Alternatives</h2>
+
 
 Brute force solution, that has the order of growth of the running time N^4 in the worst case.
