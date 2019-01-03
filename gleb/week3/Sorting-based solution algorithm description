@@ -1,10 +1,198 @@
-1. Отсортировать массив точек по возрастанию
-2. Выбрать первую точку из массива точек в качестве начальной 
-3. Отсортироваь массив точек в соответствии с углами, которые они образуют с начальной точкой 
-(начальная точка всегда будет идти первой из остальных в отсортированном массиве)
-4. Найти последнюю позицию точки в массиве, которая имеет наименьший одинаковый угол с начальной точкой
-5. Если этой точке предшествуют не меньше двух точек с этим же углом, добавить в список новый сегмент из начальной точки и точки, 
-найденной на шаге 4, если он неповторяющийся (т.к. массив изначально отсортирован, 
-каждый новый неповторяющийся сегмент будет начинаться с наименьшей точки, а повстояющиеся не с наименьшей точки) 
-6. Повторить пункт 4 - 5, для других не рассмотренных углов, пока не дойдём до конца массива
-7. Повторить пункт 2 - 6 для других не рассмотренных точек, пока не дойдём до конца массива
+<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 0; ALERTS: 2.</p>
+<ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
+
+<p style="color: red; font-weight: bold">Links to alert messages:</p><a href="#gdcalert1">alert1</a>
+<a href="#gdcalert2">alert2</a>
+
+<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
+
+
+
+## Algorithms for recognizing line patterns in a given set of points.
+
+Authors: Gleb
+
+Reviewers: Slava [X] Ivanna [ ] Sergey [ ]
+
+
+## Preamble
+
+This document describes a quick algorithm for searching all collinear points. The problem is described in the following [document](http://coursera.cs.princeton.edu/algs4/assignments/collinear.html). 
+
+
+## Problem
+
+From the set of given dots, on a 2D plane, find all maximal lines, that contain at least 4 dots...
+
+
+## Solution
+
+The algorithm, on a high level, can be described as following:
+
+_Input:_ Set of dots 
+
+[S M A L B K R C F D N]
+
+_Output:_ Set of line segments
+
+	[M N] (or [N M]), [A D] (or [D A])
+
+
+
+<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Algorithms-for0.jpg). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+
+![alt_text](images/Algorithms-for0.jpg "image_tooltip")
+
+
+_Steps:_
+
+
+
+1.  Sort the input set of dots by natural order ([link](https://stackoverflow.com/questions/5167928/what-is-natural-ordering-when-we-talk-about-sorting)) \
+_s1_ = set([N A B F K S C L R M D])
+1.  Sort the new set (s2) according to the angel that each dot create with the head of the original set (s1) 
+
+    
+
+<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Algorithms-for1.jpg). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+
+![alt_text](images/Algorithms-for1.jpg "image_tooltip")
+
+
+
+<table>
+  <tr>
+   <td>
+<em>Point</em>
+   </td>
+   <td>N
+   </td>
+   <td>A
+   </td>
+   <td>B
+   </td>
+   <td>F
+   </td>
+   <td>K
+   </td>
+   <td>S
+   </td>
+   <td>C
+   </td>
+   <td>L
+   </td>
+   <td>R
+   </td>
+   <td>M
+   </td>
+   <td>D
+   </td>
+  </tr>
+  <tr>
+   <td><em>Slope</em>
+   </td>
+   <td> -Inf
+   </td>
+   <td>-0.07
+   </td>
+   <td>-0.16
+   </td>
+   <td>-0.75
+   </td>
+   <td>-0.5
+   </td>
+   <td>-0.3
+   </td>
+   <td>-1
+   </td>
+   <td>-0.5
+   </td>
+   <td>-1
+   </td>
+   <td>-0.5
+   </td>
+   <td>-5
+   </td>
+  </tr>
+</table>
+
+
+
+    _s2_ = set([N D C R F K L M S B A])
+
+
+
+1.  For the sorted set, find all sub-sets with 3 (or more) dots that have the same slope (and _smaller dot in subset_ bigger comparing to the original set's head (N from _s1_))
+
+<table>
+  <tr>
+   <td>
+<em>Point</em>
+   </td>
+   <td>N
+   </td>
+   <td>D
+   </td>
+   <td>C
+   </td>
+   <td>R
+   </td>
+   <td>F
+   </td>
+   <td>K
+   </td>
+   <td>L
+   </td>
+   <td><em>M</em>
+   </td>
+   <td>S
+   </td>
+   <td>B
+   </td>
+   <td>A
+   </td>
+  </tr>
+  <tr>
+   <td><em>Slope</em>
+   </td>
+   <td>-Inf
+   </td>
+   <td>-5
+   </td>
+   <td>-1
+   </td>
+   <td>-1
+   </td>
+   <td>-0.75
+   </td>
+   <td>-0.5
+   </td>
+   <td>-0.5
+   </td>
+   <td>-0.5
+   </td>
+   <td>-0.3
+   </td>
+   <td>-0.16
+   </td>
+   <td>-0.07
+   </td>
+  </tr>
+</table>
+
+
+
+    _s2_subset1_ = set([K L M])
+
+
+
+1.  For each subset fond on the step 4 return line segment with the original set's head (N) and the last dot from each subset: \
+liensegment1 = [N, M]
+1.  Change head to the next dot and repeat from step 1 if there are elements left
+
+
+## Alternatives
+
+Brute force solution, that has the order of growth of the running time N^4 in the worst case.
