@@ -30,7 +30,7 @@ _Output:_ Set of line segments
 
 
 
-![Points](../assets/w3-1.jpg)
+![Points](../assets/w3_1.jpg)
 
 
 _Steps:_
@@ -43,7 +43,7 @@ _Steps:_
 2.  Sort the new set (s2) according to the angel that each dot create with the head of the original set (s1)
 
 
-![Slopes](../assets/w3-2.jpg)
+![Slopes](../assets/w3_2.jpg)
 
 
 <table>
