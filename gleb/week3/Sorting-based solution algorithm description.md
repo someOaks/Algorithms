@@ -40,7 +40,10 @@ _Steps:_
 > _s1_ = set([N A B F K S C L R M D])
 
 2.  Sort the new set (s2) according to the angel that each dot create with the head of the original set (s1)
-![Slopes](../assets/w3_2.jpg)
+
+<p align="center">
+  <img src="../assets/w3_1.1.jpg?raw=true" alt="Slopes"/>
+</p>
 
 <table>
   <tr>
