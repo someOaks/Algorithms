@@ -33,13 +33,18 @@ public class FastCollinearPoints {
         }
         linesList = new ArrayList<>();
         Point[] copyPoints = Arrays.copyOfRange(points, 0, points.length);
-        for (Point origin : copyPoints) {
+        for (Point origin : points) {
             // Sort array by points natural order
             Arrays.sort(copyPoints);
             Arrays.sort(copyPoints, origin.slopeOrder());
-            Duplicates dup = Duplicates.DUPLICATE_NOT_FOUND;
-            for (int start = 0, index = 0; index < copyPoints.length; index++) {
-                System.out.println(origin.slopeTo(copyPoints[index]));
+            linesList.addAll(searchLineSegments(copyPoints,
+                                                1,
+                                                Duplicates.DUPLICATE_NOT_FOUND,
+                                                0,
+                                                new ArrayList<LineSegment>()));
+
+            /* Duplicates dup = Duplicates.DUPLICATE_NOT_FOUND;
+             for (int start = 0, index = 0; index < copyPoints.length; index++) {
                 if (dup == Duplicates.DUPLICATE_NOT_FOUND) {
                     if (index + 1 < copyPoints.length && Double.compare(origin.slopeTo(copyPoints[index]),
                                        origin.slopeTo(copyPoints[index + 1])) == 0) {
@@ -50,9 +55,7 @@ public class FastCollinearPoints {
                 if (dup == Duplicates.DUPLICATE_FOUND) {
                     if (index + 1 < copyPoints.length) {
                         if (Double.compare(origin.slopeTo(copyPoints[index]),
-                                           origin.slopeTo(copyPoints[index + 1])) == 1 ||
-                                Double.compare(origin.slopeTo(copyPoints[index]),
-                                               origin.slopeTo(copyPoints[index + 1])) == -1) {
+                                           origin.slopeTo(copyPoints[index + 1])) != 0) {
                             dup = Duplicates.DUPLICATE_NOT_FOUND;
                             if (index - start >= 2 && origin.compareTo(copyPoints[start]) < 0) {
                                 linesList.add(new LineSegment(origin, copyPoints[index]));
@@ -63,8 +66,36 @@ public class FastCollinearPoints {
                         linesList.add(new LineSegment(origin, copyPoints[index]));
                     }
                 }
-            }
+            }*/
         }
+    }
+
+    private static List<LineSegment> searchLineSegments(Point[] points, int index, Duplicates status, int start, List<LineSegment> result) {
+        Point origin = points[0];
+        if (index == points.length) {
+            if (index - start - 1 >= 2 && status == Duplicates.DUPLICATE_FOUND &&
+                    origin.compareTo(points[start]) < 0) {
+                result.add(new LineSegment(origin, points[index - 1]));
+            }
+            return result;
+        }
+        if (status == Duplicates.DUPLICATE_NOT_FOUND) {
+            if (origin.slopeTo(points[index]) == origin.slopeTo(points[index - 1])) {
+                return searchLineSegments(points, index + 1, Duplicates.DUPLICATE_FOUND, index - 1, result);
+            }
+
+        }
+        if (status == Duplicates.DUPLICATE_FOUND) {
+                if (origin.slopeTo(points[index]) !=
+                                   origin.slopeTo(points[index - 1])) {
+                    if (index - start - 1 >= 2 && origin.compareTo(points[start]) < 0) {
+                        result.add(new LineSegment(origin, points[index - 1]));
+                    }
+                    return searchLineSegments(points, index + 1, Duplicates.DUPLICATE_NOT_FOUND, 0, result);
+                }
+
+        }
+        return searchLineSegments(points, index + 1, status, start, result);
     }
 
     private enum Duplicates {
