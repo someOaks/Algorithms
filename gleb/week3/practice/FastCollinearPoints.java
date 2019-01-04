@@ -23,7 +23,7 @@ public class FastCollinearPoints {
         for (Point p : points) {
             if (p == null) throw new IllegalArgumentException("Point is null");
         }
-        // checking if points array contains a repeated point
+        // Checking if points array contains a repeated point
         for (int i = 0; i < points.length; i++) {
             for (int j = i + 1; j < points.length; j++) {
                 if (points[i].compareTo(points[j]) == 0) {
@@ -36,13 +36,16 @@ public class FastCollinearPoints {
         for (Point origin : points) {
             // Sort array by points natural order
             Arrays.sort(copyPoints);
+            // Sort array by slope to current origin
             Arrays.sort(copyPoints, origin.slopeOrder());
+            // Used for recursive solution
             linesList.addAll(searchLineSegments(copyPoints,
                                                 1,
                                                 Duplicates.DUPLICATE_NOT_FOUND,
                                                 0,
                                                 new ArrayList<LineSegment>()));
 
+            // Looped solution
             /* Duplicates dup = Duplicates.DUPLICATE_NOT_FOUND;
              for (int start = 0, index = 0; index < copyPoints.length; index++) {
                 if (dup == Duplicates.DUPLICATE_NOT_FOUND) {
@@ -69,8 +72,13 @@ public class FastCollinearPoints {
             }*/
         }
     }
-
-    private static List<LineSegment> searchLineSegments(Point[] points, int index, Duplicates status, int start, List<LineSegment> result) {
+    
+    // Recusive solution
+    private static List<LineSegment> searchLineSegments(Point[] points, 
+                                                        int index, 
+                                                        Duplicates status, 
+                                                        int start, 
+                                                        List<LineSegment> result) {
         Point origin = points[0];
         if (index == points.length) {
             if (index - start - 1 >= 2 && status == Duplicates.DUPLICATE_FOUND &&
