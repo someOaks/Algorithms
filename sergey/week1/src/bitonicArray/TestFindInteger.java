@@ -1,56 +1,104 @@
 package bitonicArray;
 
+import edu.princeton.cs.algs4.Stopwatch;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class TestFindInteger {
-    private static int[] array1 = {-10, -7, -2, 0, 1, 3, 5, 8, 7, 6, 4, 2, -1, -3};
-    private static int[] array2 = {12, 25, 128, 256, -10, -12000};
-    private static int[] array3 = {-125, -2, 6, 12, 5, 0, -4};
-    private static int[] a1a = {-10, -7, -2, 0, 1, 3, 5, 8};
+    private static int[] array1 = {-10, -7, -2, 0, 1, 3, 5, 8, 7, 6, 4, 2, -1, -3}; // center
+    private static int[] array2 = {12, 25, 128, 256, -10, -12000}; // убывание
+    private static int[] array3 = {-125, -2, 6, 12, 5, 0, -4}; // Центр
+    private static int[] array4 = {-10, -7, -2, 0, 1, 3, 5, 8}; // Возрастание
+    private static int[] array5 = {-7, -6, -4, -2, 1, 2, 4, 6, 8, 7, 5, 3, 0, -1, -3, -5, -8, -12}; // хитровыебаный
+
+    private final static int NUMBER_OF_TESTS = 10;
+
 
 
     public static void main(String[] args) {
 
-        testFindMax();
-    }
+        testBitonicArrayFromConstant(array1, 8, "center");
+        testBitonicArrayFromConstant(array2, -12000, "убывание");
+        testBitonicArrayFromConstant(array3, -2, "Центр");
+        testBitonicArrayFromConstant(array4, 8, "Возростание");
+        testBitonicArrayFromConstant(array5, 8, "хитровыебаный");
+        testBitonicArrayFromConstant(array5, 0, "хитровыебаный2");
 
-    private static void testFindMax(){
-        int[] m = {-40, -30, -15, -7, 0, 1, 3, 20, 19, 18, 16, 13};
-        System.out.println(FindInteger.findMax(m));
-    }
 
-    public static int binarySearch(int[] a, int key) {
-        return binarySearch0(a, 0, a.length, key);
-    }
 
-    private static int binarySearch0(int[] a, int fromIndex, int toIndex,
-                                     int key) {
-        int low = fromIndex;
-        int high = toIndex - 1;
-        System.out.println("Begin: low = " + low + " high = " + high);
 
-        while (low <= high) {
-            System.out.println("low + high: " +(low + high));
-
-            if (a[low] == key) {
-                return low;
-            }
-            if (a[high] == key) {
-                return high;
-            }
-
-            int mid = (low + high) >>> 1;
-            System.out.println("MID: " +mid +" = " + a[mid]);
-            int midVal = a[mid];
-
-            if (midVal < key)
-                low = mid + 1;
-            else if (midVal > key)
-                high = mid - 1;
-            else
-                return mid; // key found
+        /*
+        int[] fromFile =  new int[BitonicArrayGenerator.ARRAY_SIZE];
+        In in = new In(BitonicArrayGenerator.FILE_NAME);
+        for (int i = 0; i < fromFile.length; i++) {
+            fromFile[i] = in.readInt();
         }
-        return -(low + 1);  // key not found.
+        in.close();
+
+        testBitonicArrayFromFile(fromFile, fromFile[new Random().nextInt(BitonicArrayGenerator.ARRAY_SIZE)]);*/
+    }
+
+
+    private static void testBitonicArrayFromFile(int[] a) {
+        System.out.println("## testBitonicArrayFromFile ## KEY: random");
+    
+        int b;
+        Double[] scores = new Double[NUMBER_OF_TESTS];
+        FindIntegerInBitonicArray finder = new FindIntegerInBitonicArray(a);
+        
+        for (int i = 0; i < NUMBER_OF_TESTS; i++) {
+            b = BitonicArrayGenerator.generateRandomInt();
+            Stopwatch stopwatch = new Stopwatch();
+            int c = finder.correctSolution(b);
+            Double time = stopwatch.elapsedTime();
+            scores[i] = time;
+//            System.out.println("Correct key index = " + c + "Time: " + time);
+        }
+
+        printScore(scores);
+
+        scores = new Double[NUMBER_OF_TESTS];
+        for (int i = 0; i < NUMBER_OF_TESTS; i++) {
+            b = BitonicArrayGenerator.generateRandomInt();
+            Stopwatch stopwatch = new Stopwatch();
+            int g = finder.findKeyIndex(b);
+            Double time = stopwatch.elapsedTime();
+            scores[i] = time;
+//            System.out.println("My method return key index = " + g + "Time: " + time);
+        }
+
+        printScore(scores);
+    }
+
+    private static void testBitonicArrayFromConstant(int[] a, int b, String typeArray) {
+        System.out.println("## testBitonicArrayFromConstant ## KEY: " + b + "; TYPE: " + typeArray +"::" + Arrays.toString(a));
+        //Arrays.toString(a);
+        FindIntegerInBitonicArray finder = new FindIntegerInBitonicArray(a);
+    
+        int g = finder.findKeyIndex(b);
+        
+        System.out.println("My method return key index = " + g);
+        
+//        int c = finder.correctSolution(b);
+//        System.out.println("Correct key index = " + c);
+    }
+
+    private static void printScore(Double[] scores) {
+        List<Double> tempScores = Arrays.asList(scores);
+
+        System.out.println("Min score: " + Collections.min(tempScores));
+        System.out.println("Max score: " + Collections.max(tempScores));
+        System.out.println("Average score: " + (sum(scores)));
+    }
+
+    private static double sum(Double[] array) {
+        Double sum = 0.0;
+        for (Double i : array) {
+            sum += i;
+        }
+
+        return sum / array.length; //НЕ РАБОТАЕТ
     }
 }

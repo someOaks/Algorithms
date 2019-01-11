@@ -71,7 +71,7 @@ public class BitonicArrayGenerator {
      * From -ARRAY_SIZE to + ARRAY_SIZE, including zero.
      * @return Integer in given limits.
      */
-    private static int generateRandomInt() {
+    static int generateRandomInt() {
         return r.nextInt((ARRAY_SIZE + ARRAY_SIZE) - 1) - (ARRAY_SIZE  - 1);
     }
 }
