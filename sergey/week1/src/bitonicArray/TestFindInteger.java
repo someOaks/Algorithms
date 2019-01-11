@@ -10,35 +10,40 @@ import java.util.Random;
 
 public class TestFindInteger {
     private static int[] array1 = {-10, -7, -2, 0, 1, 3, 5, 8, 7, 6, 4, 2, -1, -3}; // center
-    private static int[] array2 = {12, 25, 128, 256, -10, -12000}; // убывание
+    private static int[] array2 = {12, 25, 128, 256, -10, -11, -12, -13, -14, -15, -500}; // убывание
     private static int[] array3 = {-125, -2, 6, 12, 5, 0, -4}; // Центр
     private static int[] array4 = {-10, -7, -2, 0, 1, 3, 5, 8}; // Возрастание
-    private static int[] array5 = {-7, -6, -4, -2, 1, 2, 4, 6, 8, 7, 5, 3, 0, -1, -3, -5, -8, -12}; // хитровыебаный
+    private static int[] array5 = {-7, -6, -4, -2, 1, 2, 4, 6, 8, 7, 5, 3, 0, -1, -3, -5, -8, -12, -13, -15}; // хитровыебаный
 
     private final static int NUMBER_OF_TESTS = 250;
 
 
 
     public static void main(String[] args) {
+		// search for existing elements in the array
+        testBitonicArrayFromConstant(array1, -1, "center", 12);
+        testBitonicArrayFromConstant(array2, -11, "убывание", 5);
+        testBitonicArrayFromConstant(array3, -2, "Центр", 1);
+        testBitonicArrayFromConstant(array4, 8, "Возростание", 7);
+	
+		for (int i = 0; i < array5.length; i++) {
+			testBitonicArrayFromConstant(array5, array5[i], "хитрый итерация №" + i, i);
+		}
+		// search for non-existent elements in the array
+		testBitonicArrayFromConstant(array1, 9, "center", -1);
+		testBitonicArrayFromConstant(array5, -14, "хитрый с несуществующим элементом" , -1);
 
-        testBitonicArrayFromConstant(array1, 8, "center");
-        testBitonicArrayFromConstant(array2, -12000, "убывание");
-        testBitonicArrayFromConstant(array3, -2, "Центр");
-        testBitonicArrayFromConstant(array4, 8, "Возростание");
-        testBitonicArrayFromConstant(array5, 8, "хитровыебаный");
-        testBitonicArrayFromConstant(array5, 0, "хитровыебаный2");
 
 
-
-
-        int[] fromFile =  new int[BitonicArrayGenerator.ARRAY_SIZE];
-        In in = new In(BitonicArrayGenerator.FILE_NAME);
-        for (int i = 0; i < fromFile.length; i++) {
-            fromFile[i] = in.readInt();
-        }
-        in.close();
-
-        testBitonicArrayFromFile(fromFile);
+//
+//        int[] fromFile =  new int[BitonicArrayGenerator.ARRAY_SIZE];
+//        In in = new In(BitonicArrayGenerator.FILE_NAME);
+//        for (int i = 0; i < fromFile.length; i++) {
+//            fromFile[i] = in.readInt();
+//        }
+//        in.close();
+//
+//        testBitonicArrayFromFile(fromFile);
     }
 
 
@@ -52,27 +57,24 @@ public class TestFindInteger {
         for (int i = 0; i < NUMBER_OF_TESTS; i++) {
             int key = random.nextInt(BitonicArrayGenerator.ARRAY_SIZE);
             Stopwatch stopwatch = new Stopwatch();
-            int g = finder.findKeyIndex(key);
-//            System.out.println(g);
+            finder.findKeyIndex(key);
             Double time = stopwatch.elapsedTime();
             scores[i] = time;
-//            System.out.println("My method return key index = " + g + "Time: " + time);
         }
 
         printScore(scores);
     }
 
-    private static void testBitonicArrayFromConstant(int[] a, int b, String typeArray) {
+    private static void testBitonicArrayFromConstant(int[] a, int b, String typeArray, int trueIndex) {
         System.out.println("## testBitonicArrayFromConstant ## KEY: " + b + "; TYPE: " + typeArray +"::" + Arrays.toString(a));
-        //Arrays.toString(a);
         FindIntegerInBitonicArray finder = new FindIntegerInBitonicArray(a);
     
         int g = finder.findKeyIndex(b);
         
-        System.out.println("My method return key index = " + g);
+        if (g != trueIndex) throw new RuntimeException("invalid index found");
         
-//        int c = finder.correctSolution(b);
-//        System.out.println("Correct key index = " + c);
+        System.out.println("My method return key index = " + g);
+        System.out.println("                True index = " + trueIndex + "\n");
     }
 
     private static void printScore(Double[] scores) {
@@ -88,7 +90,6 @@ public class TestFindInteger {
         for (Double i : array) {
             sum += i;
         }
-
-        return sum / array.length; //НЕ РАБОТАЕТ
+        return sum / array.length;
     }
 }
