@@ -9,6 +9,4 @@
  that no algorithm can guarantee to perform fewer than ~2lg⁡n compares
  in the worst case).
 
- Я в тупике.
-
- Я понимаю откуда вечный цикл, но не то как его победить.
+Ура! Решено рекурсией!
