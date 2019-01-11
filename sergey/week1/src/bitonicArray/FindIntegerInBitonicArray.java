@@ -28,6 +28,8 @@ class FindIntegerInBitonicArray {
 	 * Searches index of element in the array.
 	 * @return The index of the item.
 	 */
+	//2
+	//{-7, -6, -4, -2, 1, 2, 4, 6, 7, 9, 5, 3, 0, -1, -3, -5, -8, -12, -13, -15}
 	private int findKeyIndexRecursive(int left, int right, int key) {
 		
 		int middle = left + (right - left) / 2;

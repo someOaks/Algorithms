@@ -35,15 +35,15 @@ public class TestFindInteger {
 
 
 
-//
-//        int[] fromFile =  new int[BitonicArrayGenerator.ARRAY_SIZE];
-//        In in = new In(BitonicArrayGenerator.FILE_NAME);
-//        for (int i = 0; i < fromFile.length; i++) {
-//            fromFile[i] = in.readInt();
-//        }
-//        in.close();
-//
-//        testBitonicArrayFromFile(fromFile);
+
+        int[] fromFile =  new int[BitonicArrayGenerator.ARRAY_SIZE];
+        In in = new In(BitonicArrayGenerator.FILE_NAME);
+        for (int i = 0; i < fromFile.length; i++) {
+            fromFile[i] = in.readInt();
+        }
+        in.close();
+
+        testBitonicArrayFromFile(fromFile);
     }
 
 

@@ -9,6 +9,9 @@
  that no algorithm can guarantee to perform fewer than ~2lg⁡n compares
  in the worst case).
 
+10
+
+{-7, -6, -4, -2, 1, 2, 4, 6, 8, 7, 5, 3, 0, -1, -3, -5, -8, -12, -13, -15}
 Ура! Решено рекурсией!
 
 Класс `TestFindInteger` тестирует сканер битонического массива следующими методами:
