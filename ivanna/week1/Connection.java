@@ -1,6 +1,3 @@
-/**
- * Created by kasavine on 12/28/18.
- */
 public class Connection {
     public final int time;
     public final int p1;

@@ -12,7 +12,15 @@ import edu.princeton.cs.algs4.UF;
  For example, if one of the connected components is {1,2,6,9},
  then the find() method should return 9
  for each of the four elements in the connected components.
+
+ * 0 1 2 3 4 5
+ *
+ * 0-2 2-5
+ * 3-4
+ *
+ * 2
  */
+
 public class UnionFindWithSpecificCanonicalElement extends UF {
     private int size;
 
@@ -23,6 +31,7 @@ public class UnionFindWithSpecificCanonicalElement extends UF {
 
     public int find2(int n){
         int largest = n;
+
 //        for(int i = n; i < size; i++){
 //            if (this.connected(n, i)){
 //                if (i >= n) {
@@ -48,12 +57,3 @@ public class UnionFindWithSpecificCanonicalElement extends UF {
         System.out.println(res);
     }
 }
-
-/*
-* 0 1 2 3 4 5
-*
-* 0-2 2-5
-* 3-4
-*
-* 2
-* */

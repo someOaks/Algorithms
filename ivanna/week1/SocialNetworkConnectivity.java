@@ -14,7 +14,25 @@ import edu.princeton.cs.algs4.UF;
  and that friendship is an equivalence relation.
  The running time of your algorithm should be m log n or better
  and use extra space proportional to n.
+
+ * n = 4 (A B C D)
+ *
+ * 1, A, B          2, B, C         3, A, D         4, C, D
+ *
+ *  union with 4 nodes
+ *  connect 0-1
+ *  A-B C D  (3)
+ *
+ *  connect 1-2
+ *  A-B-C D (2)
+ *
+ *  connect 0-3
+ *  A-B-C D (1)
+ *   \___/
+ *
+ *  return 7
  */
+
 public class SocialNetworkConnectivity {
 
     public static void main(String[] args) {
@@ -24,7 +42,6 @@ public class SocialNetworkConnectivity {
                 new Connection(3, 0, 3),
                 new Connection(4, 2, 3)
         };
-
 
         UF network = new UF(4);
 
@@ -37,32 +54,6 @@ public class SocialNetworkConnectivity {
                 System.out.println(connection.time);
                 return;
             }
-
         }
     }
-
 }
-
-/*
-* n = 4 (A B C D)
-*
-* 1, A, B
-* 2, B, C
-* 3, A, D
-* 4, C, D
-*
-*
-*
-*  union with 4 nodes
-*  connect 0-1
-*  A-B C D  (3)
-*
-*  connect 1-2
-*  A-B-C D (2)
-*
-*  connect 0-3
-*  A-B-C D (1)
-*   \___/
-*
-*  return 7
-* */

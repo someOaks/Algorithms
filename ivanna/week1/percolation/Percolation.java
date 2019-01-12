@@ -5,12 +5,14 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 public class Percolation {
     private int n;
     private boolean[][] board;
-    private WeightedQuickUnionUF cells;
+    private WeightedQuickUnionUF cells; // for percolates()
+//    private WeightedQuickUnionUF back; // for isFull()
     private int numberOpenCells = 0;
 
     // create n-by-n grid, with all sites blocked
     public Percolation(int n)  {
-        if (n <= 0) throw new IllegalArgumentException();
+        if (n <= 0)
+            throw new IllegalArgumentException();
 
         this.board = new boolean[n][n];
         this.cells = new WeightedQuickUnionUF(n * n + 2);
