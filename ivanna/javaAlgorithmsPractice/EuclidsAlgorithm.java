@@ -1,4 +1,3 @@
-package javaAlgorithmsPractice;
 /*
 * Compute the greatest common divisor of two nonnegative integers p and q as follows:
 *

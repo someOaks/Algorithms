@@ -1,4 +1,3 @@
-package javaAlgorithmsPractice;
 
 /**
  * Created by kasavine on 1/11/19.

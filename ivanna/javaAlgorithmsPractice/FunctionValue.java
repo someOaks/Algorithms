@@ -4,7 +4,6 @@
  *  Description:
  **************************************************************************** */
 
-package javaAlgorithmsPractice;
 
 import edu.princeton.cs.algs4.StdDraw;
 
