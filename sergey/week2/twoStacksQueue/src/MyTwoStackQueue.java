@@ -1,7 +1,7 @@
 import java.util.Collection;
 import java.util.Stack;
 
-public class MyTwoStackQueue<T> {
+class MyTwoStackQueue<T> {
 	
 	private int size = 0;
 	private Stack<T> stack1 = new Stack<>();
