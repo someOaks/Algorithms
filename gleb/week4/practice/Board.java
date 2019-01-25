@@ -1,9 +1,14 @@
+import edu.princeton.cs.algs4.Stack;
+
+import java.util.Arrays;
+
 /**
  *  The {@code Board} class represents a search node of the game.
  */
 public class Board {
     private final int N;
     private final int[][] block;
+
     /**
      * Construct a board from an n-by-n array of blocks,
      * where blocks[i][j] = block in row i, column j
@@ -20,6 +25,7 @@ public class Board {
             }
         }
     }
+
     /**
      * Board dimension N.
      *
@@ -28,6 +34,7 @@ public class Board {
     public int dimension() {
         return N;
     }
+
     /**
      * Number of blocks out of place.
      * @return number of blocks.
@@ -87,33 +94,88 @@ public class Board {
         }
         return twin;
     }
-  /*
 
+    /**
+     * Checks whether this board is equal to the board y
+     * @param y the other board
+     * @return {@code true} if this board is equal to {@code y}; {@code false} otherwise
+     */
+    @Override
+    public boolean equals(Object y) {
+        if (y == this) {
+            return true;
+        }
+        if (y == null) {
+            return false;
+        }
+        if (y.getClass() != this.getClass()) {
+            return false;
+        }
+        Board that = (Board)y;
+        return Arrays.deepEquals(block, that.block);
+    }
 
-    public boolean equals(Object y)        // does this board equal y?
-    public Iterable<Board> neighbors()     // all neighboring boards
-    public String toString()               //  (in the output format specified below)
-  */
-
+    /**
+     * Create all neighboring boards.
+     * @return all neighboring boards.
+     */
+    public Iterable<Board> neighbors() {
+        Stack<Board> stackOfBoards = new Stack<>();
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if(block[i][j] == 0) {
+                    if (i - 1 >= 0) {
+                        Board child1 = new Board(block);
+                        exch(child1.block, i, j,i-1, j);
+                        stackOfBoards.push(child1);
+                    }
+                    if (i + 1 < N) {
+                        Board child2 = new Board(block);
+                        exch(child2.block, i, j, i + 1, j);
+                        stackOfBoards.push(child2);
+                    }
+                    if (j - 1 >= 0) {
+                        Board child3 = new Board(block);
+                        exch(child3.block, i, j, i, j - 1);
+                        stackOfBoards.push(child3);
+                    }
+                    if (j + 1 < N) {
+                        Board child4 = new Board(block);
+                        exch(child4.block, i, j, i, j + 1);
+                        stackOfBoards.push(child4);
+                    }
+                }
+            }
+        }
+        return stackOfBoards;
+    }
 
     /**
      * String representation of this board.
      * @return string representation.
      */
-   /* public String toString() {
+    public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append(n + "\n");
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                s.append(String.format("%2d ", tiles[i][j]));
-            }
+        s.append(N + "\n");
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    s.append(String.format("%2d ", block[i][j]));
+                }
             s.append("\n");
-        }
+            }
         return s.toString();
-    }*/
-    /**
+        }
+
+    // exchange a[a][b] and a[c][d]
+    private void exch(int[][] s, int a, int b, int c, int d) {
+        int swap = s[a][b];
+        s[a][b] = s[c][d];
+        s[c][d] = swap;
+    }
+
+   /**
      * Unit tests the Board data type.
      */
-    public static void main(String[] args) {
-    }
+   public static void main(String[] args) {
+   }
 }

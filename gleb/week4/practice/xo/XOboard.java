@@ -91,8 +91,7 @@ public class XOboard {
     }
 
     public static void main(String[] args) {
-        XOboard test = new XOboard();
-        // test.boardUnique();
+        XOboard test = new XOboard();        ;
         Set<XOboard> tmp = test.boardGeneration();
         for (XOboard t : tmp) {
             t.printBoard();
