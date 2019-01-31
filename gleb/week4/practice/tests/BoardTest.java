@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -118,10 +120,15 @@ class BoardTest {
     @Test
     void testNeighborsWhtenTwoChilds() {
         int[][] array = {{1, 2, 3}, {4, 0, 6}, {7, 8, 5}};
+        int[][] array1 = {{1, 0, 3}, {4, 2, 6}, {7, 8, 5}};
+        List<Board> tmp = new ArrayList<>();
         Board testBoard = new Board(array);
-        System.out.println(testBoard.toString());
+        Board testBoard1 = new Board(array1);
+        System.out.println("testNeighborsWhtenTwoChilds:");
         for (Board b : testBoard.neighbors()) {
             System.out.println(b.toString());
+            tmp.add(b);
         }
+        assertEquals(testBoard1, tmp.get(3));
     }
 }
