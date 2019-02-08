@@ -8,7 +8,7 @@ package percolation;
  *  This program takes the name of a file as a command-line argument.
  *  From that file, it
  *
- *    - Reads the grid size n of the percolation system.
+ *    - Reads the grid size n of the week1.percolation system.
  *    - Creates an n-by-n grid of sites (intially all blocked)
  *    - Reads in a sequence of sites (row i, column j) to open.
  *
@@ -28,7 +28,7 @@ public class PercolationVisualizer {
     // delay in miliseconds (controls animation speed)
     private static final int DELAY = 100;
 
-    // draw n-by-n percolation system
+    // draw n-by-n week1.percolation system
     public static void draw(Percolation perc, int n) {
         StdDraw.clear();
         StdDraw.setPenColor(StdDraw.BLACK);
@@ -65,7 +65,7 @@ public class PercolationVisualizer {
 
     public static void main(String[] args) {
         In in = new In(args[0]);      // input file
-        int n = in.readInt();         // n-by-n percolation system
+        int n = in.readInt();         // n-by-n week1.percolation system
 
         // turn on animation mode
         StdDraw.enableDoubleBuffering();

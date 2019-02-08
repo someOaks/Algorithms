@@ -1,9 +1,11 @@
+package socialNetworkConnectivity;
+
 import edu.princeton.cs.algs4.UF;
 
 /**
- *    #1 Social network connectivity.
+ *    #1 Social socialNetworkConnectivity connectivity.
 
- Given a social network containing n members
+ Given a social socialNetworkConnectivity containing n members
  and a log file containing m timestamps
  at which times pairs of members formed friendships,
  design an algorithm to determine the earliest time

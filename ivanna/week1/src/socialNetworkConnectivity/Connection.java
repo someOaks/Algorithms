@@ -1,3 +1,5 @@
+package socialNetworkConnectivity;
+
 public class Connection {
     public final int time;
     public final int p1;

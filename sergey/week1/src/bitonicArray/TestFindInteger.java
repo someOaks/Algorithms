@@ -13,7 +13,15 @@ public class TestFindInteger {
     private static int[] array2 = {12, 25, 128, 256, -10, -11, -12, -13, -14, -15, -500}; // убывание
     private static int[] array3 = {-125, -2, 6, 12, 5, 0, -4}; // Центр
     private static int[] array4 = {-10, -7, -2, 0, 1, 3, 5, 8}; // Возрастание
+
+
+
+
     private static int[] array5 = {-7, -6, -4, -2, 1, 2, 4, 6, 8, 7, 5, 3, 0, -1, -3, -5, -8, -12, -13, -15}; // хитровыебаный
+                                                   //2   3 // 6
+    // array.length()
+    // for
+    // while
 
     private final static int NUMBER_OF_TESTS = 250;
 

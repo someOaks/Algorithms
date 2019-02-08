@@ -23,12 +23,12 @@ public class PercolationStats {
         }
     }
 
-    // sample mean of percolation threshold
+    // sample mean of week1.percolation threshold
     public double mean() {
         return StdStats.mean(experimentsResults);
     }
 
-    // sample standard deviation of percolation threshold
+    // sample standard deviation of week1.percolation threshold
     public double stddev() {
         return StdStats.stddev(experimentsResults);
     }
