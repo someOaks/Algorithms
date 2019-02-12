@@ -39,3 +39,6 @@ gen
 /ivanna/week2/src/dequesAndRandomizedQueues/
 /ivanna/week2/src/queueWithTwoStacks/
 /ivanna/week2/src/stackWithMax/
+
+# System files
+.DS_Store
