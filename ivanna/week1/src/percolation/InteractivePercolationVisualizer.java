@@ -13,13 +13,11 @@ package percolation; /**********************************************************
 
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
-import percolation.Percolation;
-import percolation.PercolationVisualizer;
 
 public class InteractivePercolationVisualizer {
 
     public static void main(String[] args) {
-        // n-by-n percolation system (read from command-line, default = 10)
+        // n-by-n week1.percolation system (read from command-line, default = 10)
         int n = 10;          
         if (args.length == 1) n = Integer.parseInt(args[0]);
 
@@ -52,7 +50,7 @@ public class InteractivePercolationVisualizer {
                     perc.open(i, j);
                 }
 
-                // draw n-by-n percolation system
+                // draw n-by-n week1.percolation system
                 PercolationVisualizer.draw(perc, n);
                 StdDraw.show();
             }

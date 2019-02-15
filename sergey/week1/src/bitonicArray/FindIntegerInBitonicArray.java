@@ -14,7 +14,7 @@ class FindIntegerInBitonicArray {
 	}
 	
 	/**
-	 * Searches index of element in the bitonic array.
+	 * Searches index of element in the searchInBitonicArray array.
 	 * @return The index of the item.
 	 */
 	int findKeyIndex( int key) {
