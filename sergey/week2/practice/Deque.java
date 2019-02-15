@@ -103,7 +103,7 @@ public class Deque<Item> implements Iterable<Item> {
 
         return result;
     }
-    public Iterator<Item> iterator() {         // return an iterator over items in order from front to end
+    public Iterator<Item> iterator() {
         return new DequeIterator();
     }
 
@@ -115,8 +115,12 @@ public class Deque<Item> implements Iterable<Item> {
         final int destinationPosition = (size + 1) >> 1;
         final int numberOfCopiedItems = (items.length - 1) - head;
 
-        System.arraycopy(items, head +1, biggestArray, destinationPosition, numberOfCopiedItems);
-        System.arraycopy(items, 0, biggestArray, destinationPosition + numberOfCopiedItems, tail);
+        System.arraycopy(items, head +1,
+                         biggestArray, destinationPosition,
+                         numberOfCopiedItems);
+        System.arraycopy(items, 0,
+                         biggestArray, destinationPosition + numberOfCopiedItems,
+                         tail);
 
         items = biggestArray;
         tail = destinationPosition + numberOfCopiedItems + tail;
@@ -133,13 +137,18 @@ public class Deque<Item> implements Iterable<Item> {
 
         if (head < tail) {
             numberOfCopiedItems = (tail - head) - 1;
-            System.arraycopy(items, head +1, smallerArray, destinationPosition, numberOfCopiedItems);
+            System.arraycopy(items, head +1,
+                             smallerArray, destinationPosition,
+                             numberOfCopiedItems);
 
             tail = destinationPosition + numberOfCopiedItems;
         } else {
             numberOfCopiedItems = (items.length - 1) - head;
-            System.arraycopy(items, head +1, smallerArray, destinationPosition, numberOfCopiedItems);
-            System.arraycopy(items, 0, smallerArray, destinationPosition + numberOfCopiedItems,
+            System.arraycopy(items, head +1,
+                             smallerArray, destinationPosition,
+                             numberOfCopiedItems);
+            System.arraycopy(items, 0,
+                             smallerArray, destinationPosition + numberOfCopiedItems,
                              tail);
 
             tail = destinationPosition + numberOfCopiedItems + tail;
@@ -161,7 +170,9 @@ public class Deque<Item> implements Iterable<Item> {
 
     private class DequeIterator implements Iterator<Item> {
 
-        private int currentIndex = (head + 1) < items.length ? (head + 1) : (head + 1) % items.length;
+        private int currentIndex = (head + 1) < items.length ?
+                                   (head + 1) :
+                                   (head + 1) % items.length;
 
         /**
          * Returns {@code true} if the iteration has more elements. (In other words, returns {@code
@@ -185,7 +196,9 @@ public class Deque<Item> implements Iterable<Item> {
             if (!hasNext()) throw new NoSuchElementException();
             int lastIndex = currentIndex;
 
-            currentIndex = (currentIndex + 1) < items.length ? (currentIndex + 1) : (currentIndex + 1) % items.length;
+            currentIndex = (currentIndex + 1) < items.length ?
+                           (currentIndex + 1) :
+                           (currentIndex + 1) % items.length;
 
 
             return Deque.this.items[lastIndex];
