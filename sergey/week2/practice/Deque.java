@@ -202,11 +202,6 @@ public class Deque<Item> implements Iterable<Item> {
         }
     }
 
-    /**
-     * just for tests.
-     * @param args - some input params.
-     */
     public static void main(String[] args) {   // unit testing (optional)
-        // All tests was remowed
     }
 }
