@@ -159,14 +159,6 @@ public class Deque<Item> implements Iterable<Item> {
 
     }
 
-    /**
-     * Need fo tests.
-     * @return array length.
-     */
-    private int getLength() {
-        return items.length;
-    }
-
     private class DequeIterator implements Iterator<Item> {
 
         private int currentIndex = (head + 1) < items.length ?
@@ -209,10 +201,6 @@ public class Deque<Item> implements Iterable<Item> {
         }
     }
 
-    /**
-     * just for tests.
-     * @param args - some input params.
-     */
     public static void main(String[] args) {   // unit testing (optional)
     }
 }
