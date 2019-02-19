@@ -35,7 +35,7 @@ public class TestRandomizedQueue {
 
         for (int i = 1; i < 22; i++) {
             int number = Integer.parseInt(bagInt.dequeue());
-            System.out.println(number);
+            // System.out.println(number);
 
             assertTrue("number is out of range: " + number, 1 <= number && number <= 21);
         }
@@ -56,7 +56,7 @@ public class TestRandomizedQueue {
 
         for (int i = 1; i < 3; i++) {
             int number = Integer.parseInt(bagInt.dequeue());
-            System.out.println(number);
+            // System.out.println(number);
 
             assertTrue("number is out of range: " + number, 1 <= number && number <= 2);
         }
@@ -86,7 +86,7 @@ public class TestRandomizedQueue {
 
         for (int i = 0; i < 100; i++) {
             int number = Integer.parseInt(bagInt.sample());
-            System.out.println(number);
+            // System.out.println(number);
 
             assertTrue("number is out of range: " + number, 1 <= number && number <= 21);
         }
@@ -107,7 +107,7 @@ public class TestRandomizedQueue {
 
         for (int i = 0; i < 100; i++) {
             int number = Integer.parseInt(bagInt.sample());
-            System.out.println(number);
+            // System.out.println(number);
 
             assertTrue("number is out of range: " + number, 1 <= number && number <= 2);
         }
@@ -140,7 +140,7 @@ public class TestRandomizedQueue {
         assertTrue(bagInt.isEmpty());
         assertEquals(0, bagInt.size());
 
-            bagInt.enqueue(String.valueOf(1));
+        bagInt.enqueue(String.valueOf(1));
         assertFalse(bagInt.isEmpty());
         assertEquals(1, bagInt.size());
 

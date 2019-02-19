@@ -95,7 +95,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
      */
     private Node getRandomNode() {
         int randoomInt = StdRandom.uniform(size) + 1;
-        System.out.println("RANOMint: " + randoomInt);
+        // System.out.println("RANOMint: " + randoomInt); // Need for test.
         Node result = firstNode;
 
         if (randoomInt < (size/2)) {
