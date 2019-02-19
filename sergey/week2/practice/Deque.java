@@ -1,4 +1,4 @@
-import java.util.Arrays;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -16,7 +16,7 @@ public class Deque<Item> implements Iterable<Item> {
     private int head, tail;
 
     public Deque() {           // construct an empty deque
-        items = (Item[])new Object[8];
+        items = (Item[]) new Object[8];
 
         head =  (items.length-1) >> 1;
         tail = head + 1;
@@ -111,7 +111,7 @@ public class Deque<Item> implements Iterable<Item> {
      * Increases the queue size by two.
      */
     private void increaseDeque() {
-        final Item[] biggestArray = (Item[])new Object[((size + 1) << 1)];
+        final Item[] biggestArray = (Item[]) new Object[((size + 1) << 1)];
         final int destinationPosition = (size + 1) >> 1;
         final int numberOfCopiedItems = (items.length - 1) - head;
 
@@ -131,7 +131,7 @@ public class Deque<Item> implements Iterable<Item> {
      * Вecrease the queue size by two.
      */
     private void decreaseDeque() {
-        final Item[] smallerArray = (Item[])new Object[(items.length >> 1)];
+        final Item[] smallerArray = (Item[]) new Object[(items.length >> 1)];
         final int destinationPosition = (smallerArray.length - (items.length / 3) + 1) >> 1;
         final int numberOfCopiedItems;
 
@@ -158,14 +158,6 @@ public class Deque<Item> implements Iterable<Item> {
 
         head = destinationPosition - 1;
 
-    }
-
-    /**
-     * Need fo tests.
-     * @return array length.
-     */
-    private int getLength() {
-        return items.length;
     }
 
     private class DequeIterator implements Iterator<Item> {
@@ -215,193 +207,6 @@ public class Deque<Item> implements Iterable<Item> {
      * @param args - some input params.
      */
     public static void main(String[] args) {   // unit testing (optional)
-        testAddFirst();
-        testAddLast();
-        testLastANDFirst();
-
-        testRemoveFirst();
-
-        testRemoveLast();
-        testAddAfterFullRemove();
-        testDecrease();
-
-        testForeich();
-    }
-
-    private static void testForeich() {
-        System.out.println("### testForeich");
-        Deque<String> d = new Deque<>();
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        System.out.println(Arrays.deepToString(d.items));
-
-        d.addLast(String.valueOf(4));
-        d.addFirst(String.valueOf(3));
-        d.addLast(String.valueOf(5));
-        d.addFirst(String.valueOf(2));
-        d.addFirst(String.valueOf(1));
-        d.addFirst(String.valueOf(0));
-        d.addFirst(String.valueOf(-1));
-        d.addLast(String.valueOf(6));
-        d.addLast(String.valueOf(7));
-        d.addLast(String.valueOf(8));
-        d.addLast(String.valueOf(9));
-        d.addLast(String.valueOf(10));
-        d.addLast(String.valueOf(11));
-        d.addLast(String.valueOf(12));
-        d.addLast(String.valueOf(13));
-        d.addLast(String.valueOf(14));
-
-        for (String item : d) {
-            System.out.println(item);
-        }
-
-        System.out.println(Arrays.deepToString(d.items));
-    }
-
-    private static void testAddAfterFullRemove() {
-        System.out.println("### testAddAfterFullRemove");
-        Deque<String> d = new Deque<>();
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-
-        d.addLast(String.valueOf(4));
-        d.addFirst(String.valueOf(3));
-        System.out.println(Arrays.deepToString(d.items));
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-
-        System.out.println("delete FIRST: " + d.removeFirst());
-        System.out.println("delete FIRST: " + d.removeFirst());
-        System.out.println(Arrays.deepToString(d.items));
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-
-
-
-        System.out.println("Is empty? : " + d.isEmpty());
-
-        d.addFirst(String.valueOf(1));
-        System.out.println(Arrays.deepToString(d.items));
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-
-        d.addFirst(String.valueOf(0));
-        System.out.println(Arrays.deepToString(d.items));
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-
-        d.addLast(String.valueOf(2));
-        System.out.println(Arrays.deepToString(d.items));
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-    }
-
-    private static void testDecrease() {
-        System.out.println("### testDecrease");
-        Deque<String> d = new Deque<>();
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-
-        System.out.println(Arrays.deepToString(d.items));
-        for (int i = 4; i < 12; i++) {
-            d.addLast(String.valueOf(i));
-            System.out.println(Arrays.deepToString(d.items));
-            System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        }
-
-        for (int i = 3; i > -4; i--) {
-            d.addFirst(String.valueOf(i));
-            System.out.println(Arrays.deepToString(d.items));
-            System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        }
-
-        System.out.println(d.getLength());
-
-        // remove just last:
-        for (int i = 0; i < 14; i++) {
-            System.out.println("delete LAST: " + d.removeLast());
-            System.out.println(Arrays.deepToString(d.items));
-            System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        }
-
-        System.out.println(d.getLength());
-    }
-
-    private static void testRemoveLast() {
-        System.out.println("### RemoveLast");
-        Deque<String> d = new Deque<>();
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-
-        System.out.println(Arrays.deepToString(d.items));
-        for (int i = 4; i < 10; i++) {
-            d.addLast(String.valueOf(i));
-            System.out.println(Arrays.deepToString(d.items));
-            System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        }
-
-        for (int i = 4; i < 10; i++) {
-            System.out.println("delete LAST: " + d.removeLast());
-            System.out.println(Arrays.deepToString(d.items));
-            System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        }
-    }
-
-    private static void testRemoveFirst() {
-        System.out.println("### RemoveFirst");
-        Deque<String> d = new Deque<>();
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-
-        System.out.println(Arrays.deepToString(d.items));
-        for (int i = 3; i > -10; i--) {
-            d.addFirst(String.valueOf(i));
-            System.out.println(Arrays.deepToString(d.items));
-            System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        }
-
-        for (int i = 3; i > -10; i--) {
-            System.out.println("delete FIRST: " + d.removeFirst());
-            System.out.println(Arrays.deepToString(d.items));
-            System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        }
-    }
-
-    private static void testAddFirst() {
-        System.out.println("### addFIRST");
-        Deque<String> d = new Deque<>();
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-
-        System.out.println(Arrays.deepToString(d.items));
-
-        for (int i = 3; i > -14; i--) {
-            d.addFirst(String.valueOf(i));
-            System.out.println(Arrays.deepToString(d.items));
-            System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        }
-    }
-
-    private static void testAddLast() {
-        System.out.println("### addLAST");
-        Deque<String> d = new Deque<>();
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-
-        System.out.println(Arrays.deepToString(d.items));
-
-        for (int i = 4; i < 14; i++) {
-            d.addLast(String.valueOf(i));
-            System.out.println(Arrays.deepToString(d.items));
-            System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        }
-    }
-
-    private static void testLastANDFirst() {
-        System.out.println("### addLAST AND FIRST");
-        Deque<String> d = new Deque<>();
-        System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-
-        System.out.println(Arrays.deepToString(d.items));
-        for (int i = 3; i > 0; i--) {
-            d.addFirst(String.valueOf(i));
-            System.out.println(Arrays.deepToString(d.items));
-            System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        }
-
-        for (int i = 4; i < 14; i++) {
-            d.addLast(String.valueOf(i));
-            System.out.println(Arrays.deepToString(d.items));
-            System.out.printf("head: %d, tail: %d \n", d.head, d.tail);
-        }
+        // All tests was remowed
     }
 }
