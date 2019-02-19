@@ -120,7 +120,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
      * @return - RandomIterator.
      */
     public Iterator<Item> iterator() { // return an independent iterator over items in random order
-        Item[] itemArray = (Item[])new Object[size];
+        Item[] itemArray = (Item[]) new Object[size];
         Node currentNode = firstNode;
 
         for (int i = 0; i < itemArray.length; i++) {
