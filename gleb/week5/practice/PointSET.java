@@ -1,13 +1,15 @@
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
+import edu.princeton.cs.algs4.SET;
 
 public class PointSET {
+    private SET<Point2D> points;
 
     /**
      * Construct an empty set of points.
      */
     public PointSET() {
-
+        points = new SET<>();
     }
 
     /**
@@ -15,7 +17,7 @@ public class PointSET {
      * @return @code true} if setis empty; {@code false} otherwise.
      */
     public boolean isEmpty() {
-
+        return points.isEmpty();
     }
 
     /**
@@ -23,7 +25,7 @@ public class PointSET {
      * @return number of points in the set.
      */
     public int size() {
-
+        return points.size();
     }
 
     /**
@@ -31,7 +33,12 @@ public class PointSET {
      * @param p the point.
      */
     public void insert(Point2D p) {
-
+        if (p == null) {
+            throw new IllegalArgumentException("Argument is null");
+        }
+        if (!contains(p)) {
+            points.add(p);
+        }
     }
 
     /**
@@ -40,14 +47,19 @@ public class PointSET {
      * @return {@code true} if set contain point p; {@code false} otherwise.
      */
     public boolean contains(Point2D p) {
-
+        if (p == null) {
+            throw new IllegalArgumentException("Argument is null");
+        }
+        return points.contains(p);
     }
 
     /**
      * Draw all points to standard draw.
      */
     public void draw() {
-
+        for (Point2D p : points) {
+            p.draw();
+        }
     }
 
     /**
@@ -56,7 +68,11 @@ public class PointSET {
      * @return all points inside the rectangle.
      */
     public Iterable<Point2D> range(RectHV rect) {
+        if (rect == null) {
+            throw new IllegalArgumentException("Argument is null");
+        }
 
+        return points; // realize
     }
 
     /**
@@ -65,7 +81,10 @@ public class PointSET {
      * @return a nearest neighbor.
      */
     public Point2D nearest(Point2D p) {
-
+        if (p == null) {
+            throw new IllegalArgumentException("Argument is null");
+        }
+        return p; // realize
     }
 
     /**
