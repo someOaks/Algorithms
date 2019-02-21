@@ -1,15 +1,19 @@
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
-import edu.princeton.cs.algs4.SET;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class PointSET {
-    private SET<Point2D> points;
+    private Set<Point2D> points;
 
     /**
      * Construct an empty set of points.
      */
     public PointSET() {
-        points = new SET<>();
+        points = new TreeSet<>();
     }
 
     /**
@@ -63,7 +67,7 @@ public class PointSET {
     }
 
     /**
-     * all points that are inside the rectangle (or on the boundary)
+     * All points that are inside the rectangle (or on the boundary).
      * @param rect the rectangle.
      * @return all points inside the rectangle.
      */
@@ -71,8 +75,13 @@ public class PointSET {
         if (rect == null) {
             throw new IllegalArgumentException("Argument is null");
         }
-
-        return points; // realize
+        List<Point2D> inRect = new ArrayList<>();
+        for (Point2D p : points) {
+            if (rect.contains(p)) {
+                inRect.add(p);
+            }
+        }
+        return inRect;
     }
 
     /**
@@ -84,7 +93,14 @@ public class PointSET {
         if (p == null) {
             throw new IllegalArgumentException("Argument is null");
         }
-        return p; // realize
+        if (points.size() == 0) {
+            return null;
+        }
+        else {
+            TreeSet<Point2D> copyPints = new TreeSet<>(p.distanceToOrder());
+            copyPints.addAll(points);
+            return copyPints.first();
+        }
     }
 
     /**
