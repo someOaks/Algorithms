@@ -1,3 +1,5 @@
+Вопрос года: https://www.coursera.org/learn/algorithms-part1/programming/zamjZ/deques-and-randomized-queues/discussions/threads/FISHuzX1EemC-BKOpVy2hg
+
 
 ### Dequeue. ###
  
@@ -46,7 +48,7 @@ cases:
  iterator implementation must support each operation (including
  construction) in constant worst-case time.*
  
- ### Randomized queue. ###
+### Randomized queue. ###
  
 A randomized queue is similar to a stack or queue, except that the item
 removed is chosen uniformly at random from items in the data structure.
@@ -86,7 +88,7 @@ independent; each iterator must maintain its own random order.
 - Throw a java.lang.UnsupportedOperationException if the client calls
   the remove() method in the iterator.
   
-** Performance requirements.** 
+**Performance requirements.** 
 
 Your randomized queue implementation must
 support each randomized queue operation (besides creating an iterator)
@@ -97,3 +99,50 @@ items must use at most 48n + 192 bytes of memory. Additionally, your
 iterator implementation must support operations next() and hasNext() in
 constant worst-case time; and construction in linear time; you may (and
 will need to) use a linear amount of extra memory per iterator.
+
+
+
+### Client. 
+
+Write a client program Permutation.java that takes an integer k as a
+command-line argument; reads in a sequence of strings from standard
+input using StdIn.readString(); and prints exactly k of them, uniformly
+at random. Print each item from the sequence at most once.
+
+```
+
+% more distinct.txt                        % more duplicates.txt
+A B C D E F G H I                          AA BB BB BB BB BB CC CC
+
+% java-algs4 Permutation 3 < distinct.txt   % java-algs4 Permutation 8 < duplicates.txt
+C                                               BB
+G                                               AA
+A                                               BB
+                                                CC
+% java-algs4 Permutation 3 < distinct.txt       BB
+E                                               BB
+F                                               CC
+G                                               BB
+
+```
+
+**API:**
+
+```java
+    public class Permutation {
+       public static void main(String[] args){}
+    }
+```
+
+**Command-line input.**  
+
+You may assume that 0 ≤ k ≤ n, where n is the number of string on 
+standard input.
+
+**Performance requirements.** 
+
+The running time of Permutation must be linear in the size of the input.
+You may use only a constant amount of memory plus either one Deque or
+RandomizedQueue object of maximum size at most n. (For an extra
+challenge, use only one Deque or RandomizedQueue object of maximum size
+at most k.)
