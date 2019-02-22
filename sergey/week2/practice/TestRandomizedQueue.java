@@ -6,6 +6,17 @@ import static org.junit.Assert.assertTrue;
 
 public class TestRandomizedQueue {
 
+
+    @Test
+    public void generalTest() {
+        RandomizedQueue<String> q = new RandomizedQueue<>();
+
+        for (int i = 0; i < 11; i++) q.enqueue(String.valueOf(i));
+
+        for (int i = 0; i < 11; i++) System.out.println(q.dequeue());
+    }
+
+
     @Test
     public void testEnqueue() {
         RandomizedQueue<Integer> bagInt = new RandomizedQueue<>();
