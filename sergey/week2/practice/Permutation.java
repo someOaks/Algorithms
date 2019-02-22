@@ -5,14 +5,10 @@ public class Permutation {
     public static void main(String[] args) {
         RandomizedQueue<String> rQ = new RandomizedQueue<>();
         int k = Integer.parseInt(args[0]);
-        int count = 0;
 
         while (!StdIn.isEmpty()) {
             String tempString = StdIn.readString();
-            if (count < k) {
-                rQ.enqueue(tempString);
-                count++;
-            }
+            rQ.enqueue(tempString);
         }
 
 

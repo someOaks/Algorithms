@@ -92,14 +92,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
      */
     private Node getRandomNode() {
         int randoomInt = StdRandom.uniform(size) + 1;
-        int secondRandom = StdRandom.uniform(size) + 1;
-        if (StdRandom.bernoulli()) randoomInt = secondRandom;
         // System.out.println("RANOMint: " + randoomInt); // Need for test.
-        // System.out.println("secondRandom: " + secondRandom); // Need for test.
         if (randoomInt == 1) return firstNode;
         if (randoomInt == size) return lastAddedNode;
 
-        Node result = firstNode;
+        Node result = firstNode.next;
 
         if (randoomInt <= (size/2)) {
             for (int i = 1; i < randoomInt; i++) {
@@ -108,7 +105,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
 
         if (randoomInt > (size/2)) {
-            result = lastAddedNode;
+            result = lastAddedNode.previous;
             for (int i = size; i > randoomInt; i--) {
                 result = result.previous;
             }
@@ -174,7 +171,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException("Ленинград - дорожная");
+            throw new UnsupportedOperationException("https://coub.com/view/1myy2s");
         }
     }
 
