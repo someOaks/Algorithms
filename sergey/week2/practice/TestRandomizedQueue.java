@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 public class TestRandomizedQueue {
 
 
+
     @Test
     public void generalTest() {
         RandomizedQueue<String> q = new RandomizedQueue<>();

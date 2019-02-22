@@ -19,9 +19,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
 
-    public RandomizedQueue() { // construct an empty randomized queue
-        this.lastAddedNode = null;
-    }
+    public RandomizedQueue() { }
 
     public boolean isEmpty() { // is the randomized queue empty?
         return size == 0;
@@ -94,7 +92,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
      */
     private Node getRandomNode() {
         int randoomInt = StdRandom.uniform(size) + 1;
+        int secondRandom = StdRandom.uniform(size) + 1;
+        if (StdRandom.bernoulli()) randoomInt = secondRandom;
         // System.out.println("RANOMint: " + randoomInt); // Need for test.
+        // System.out.println("secondRandom: " + secondRandom); // Need for test.
         if (randoomInt == 1) return firstNode;
         if (randoomInt == size) return lastAddedNode;
 
@@ -140,11 +141,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         private int currentIndex = 0;
 
-        private Item[] randomOrderItems;
+        private final Item[] randomOrderItems;
 
-        private RandomIterator(Item[] itemArray) {
-            StdRandom.shuffle(itemArray);
+        private RandomIterator(final Item[] itemArray) {
             randomOrderItems = itemArray;
+            StdRandom.shuffle(randomOrderItems);
+
         }
 
         /**
