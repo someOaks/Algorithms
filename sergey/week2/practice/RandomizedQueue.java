@@ -96,7 +96,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (randoomInt == 1) return firstNode;
         if (randoomInt == size) return lastAddedNode;
 
-        Node result = firstNode.next;
+        Node result = firstNode;
 
         if (randoomInt <= (size/2)) {
             for (int i = 1; i < randoomInt; i++) {
@@ -105,7 +105,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
 
         if (randoomInt > (size/2)) {
-            result = lastAddedNode.previous;
+            result = lastAddedNode;
             for (int i = size; i > randoomInt; i--) {
                 result = result.previous;
             }
