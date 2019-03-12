@@ -19,9 +19,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
 
-    public RandomizedQueue() { // construct an empty randomized queue
-        this.lastAddedNode = null;
-    }
+    public RandomizedQueue() { }
 
     public boolean isEmpty() { // is the randomized queue empty?
         return size == 0;
@@ -61,17 +59,16 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         Node randomNode = getRandomNode();
 
-        if (size == 1) {
-            firstNode = null;
-            lastAddedNode = null;
-        }
-
         if (randomNode.previous != null) {
             randomNode.previous.next = randomNode.next;
+        } else {
+            firstNode = randomNode.next;
         }
 
         if (randomNode.next != null) {
             randomNode.next.previous = randomNode.previous;
+        } else {
+            lastAddedNode = randomNode.previous;
         }
 
         size--;
@@ -96,9 +93,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     private Node getRandomNode() {
         int randoomInt = StdRandom.uniform(size) + 1;
         // System.out.println("RANOMint: " + randoomInt); // Need for test.
+        if (randoomInt == 1) return firstNode;
+        if (randoomInt == size) return lastAddedNode;
+
         Node result = firstNode;
 
-        if (randoomInt < (size/2)) {
+        if (randoomInt <= (size/2)) {
             for (int i = 1; i < randoomInt; i++) {
                 result  = result.next;
             }
@@ -138,11 +138,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         private int currentIndex = 0;
 
-        private Item[] randomOrderItems;
+        private final Item[] randomOrderItems;
 
-        private RandomIterator(Item[] itemArray) {
-            StdRandom.shuffle(itemArray);
+        private RandomIterator(final Item[] itemArray) {
             randomOrderItems = itemArray;
+            StdRandom.shuffle(randomOrderItems);
+
         }
 
         /**
@@ -170,11 +171,54 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException("Ленинград - дорожная");
+            throw new UnsupportedOperationException("https://coub.com/view/1myy2s");
         }
     }
 
     public static void main(String[] args) { // unit testing (optional)
+        // trueOut();
+        // testGetRandomNode();
+        // testDELETERandomNode();
 
+
+        // RandomizedQueue<String> q = new RandomizedQueue<>();
+        //
+        // for (int i = 1; i < 11; i++) q.enqueue(String.valueOf(i));
+        //
+        //
+        //
+        // for (int i = 1; i < 11; i++) System.out.println(q.dequeue());
     }
+
+    // private static void trueOut() {
+    //     RandomizedQueue<String> q = new RandomizedQueue<>();
+    //
+    //     for (int i = 1; i < 11; i++) q.enqueue(String.valueOf(i));
+    //
+    //     RandomizedQueue<String>.Node tempNode = q.firstNode;
+    //     for (int i = 1; i < 11; i++) {
+    //         System.out.println(tempNode.item);
+    //         tempNode = tempNode.next;
+    //     }
+    // }
+    //
+    // private static void testGetRandomNode() {
+    //     RandomizedQueue<String> q = new RandomizedQueue<>();
+    //
+    //     for (int i = 1; i < 11; i++) q.enqueue(String.valueOf(i));
+    //
+    //     for (int i = 1; i < 11; i++) {
+    //         System.out.println(q.getRandomNode().item);
+    //     }
+    // }
+    //
+    // private static void testDELETERandomNode() {
+    //     RandomizedQueue<String> q = new RandomizedQueue<>();
+    //
+    //     for (int i = 1; i < 11; i++) q.enqueue(String.valueOf(i));
+    //
+    //     for (int i = 1; i < 11; i++) {
+    //         System.out.println(q.dequeue());
+    //     }
+    // }
 }
