@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class IsPermutation {
 	
-	public static boolean isPermute(final int[] A, final int[] B) { // O(2 * n log n)
+	public static boolean isPermute(final int[] A, final int[] B) { // O(n log n + n log n )
 		if (A.length != B.length) return false; // O(1)
 		
 		int matchCounter = 0;
