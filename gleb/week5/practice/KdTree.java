@@ -78,7 +78,21 @@ public class KdTree {
         if (p == null) {
             throw new IllegalArgumentException("Argument is null");
         }
+        return contains(root, p, true);
+    }
 
+    private boolean contains(Node n, Point2D p, boolean xLevel) {
+        if (n == null) return false;
+        if (n.p.equals(p)) return true;
+        int cmp;
+        if (xLevel) {
+            cmp = Point2D.X_ORDER.compare(n.p, p);
+        }
+        else {
+            cmp = Point2D.Y_ORDER.compare(n.p, p);
+        }
+        if (cmp > 0) return contains(n.lb, p, !xLevel);
+        else return contains(n.rt, p, !xLevel);
     }
 
     /**

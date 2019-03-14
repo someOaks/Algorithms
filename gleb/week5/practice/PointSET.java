@@ -93,7 +93,7 @@ public class PointSET {
         if (p == null) {
             throw new IllegalArgumentException("Argument is null");
         }
-        if (points.size() == 0) {
+        if (points.isEmpty()) {
             return null;
         }
         else {

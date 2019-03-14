@@ -206,7 +206,7 @@
 
     <!-- x0 = x1 = StdDraw.mouseX() in RangeSearchVisualizer -->
     <suppress checks="InnerAssignmentCheck"
-              files="(RangeSearchVisualizer).java"/>
+              files="(gleb.week5.practice.RangeSearchVisualizer).java"/>
 
     <!-- clean implementations can use many parameters -->
     <suppress checks="ParameterNumberCheck"
