@@ -112,7 +112,7 @@ public class KdTree {
      * Draw all points to standard draw.
      */
     public void draw() {
-
+        draw(root, true);
     }
 
     private void draw(Node n, boolean xLevel) {
