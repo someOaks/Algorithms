@@ -1,5 +1,6 @@
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
+import edu.princeton.cs.algs4.StdDraw;
 
 public class KdTree {
     private int size;
@@ -112,6 +113,24 @@ public class KdTree {
      */
     public void draw() {
 
+    }
+
+    private void draw(Node n, boolean xLevel) {
+        if (xLevel) {
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.line(n.p.x(), n.rect.ymin(), n.p.x(), n.rect.ymax());
+        } else {
+            StdDraw.setPenColor(StdDraw.BLUE);
+            StdDraw.line(n.rect.xmin(), n.p.y(), n.rect.xmax(), n.p.y());
+        }
+        if (n.lb != null) {
+            draw(n.lb, !xLevel);
+        }
+        if (n.rt != null) {
+            draw(n.rt, !xLevel);
+        }
+        StdDraw.setPenColor(StdDraw.BLACK);
+        n.p.draw();
     }
 
     /**
