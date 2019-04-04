@@ -1,4 +1,5 @@
 import edu.princeton.cs.algs4.Point2D;
+import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.RectHV;
 import edu.princeton.cs.algs4.StdDraw;
 
@@ -8,7 +9,6 @@ public class KdTree {
     private static class Node {
         private Point2D p;      // the point
         private RectHV rect;    // the axis-aligned rectangle corresponding to this node
-        private boolean xLevel; // the level of subtree
         private Node lb;        // the left/bottom subtree
         private Node rt;        // the right/top subtree
 
@@ -64,13 +64,13 @@ public class KdTree {
             return n;
         }
         if (xLevel) {
-            if (Point2D.X_ORDER.compare(n.p, p) < 0) {
+            if (Point2D.X_ORDER.compare(p, n.p) < 0) {
                 n.lb = insert(n.lb, p, new RectHV(n.rect.xmin(), n.rect.ymin(), n.p.x(), n.rect.ymax()), false);
             } else {
                 n.rt = insert(n.rt, p, new RectHV(n.p.x(), n.rect.ymin(), n.rect.xmax(), n.rect.ymax()), false);
             }
         } else {
-            if (Point2D.Y_ORDER.compare(n.p, p) < 0) {
+            if (Point2D.Y_ORDER.compare(p, n.p) < 0) {
                 n.lb = insert(n.lb, p, new RectHV(n.rect.xmin(), n.rect.ymin(), n.rect.xmax(), n.p.y()), true);
             } else {
                 n.rt = insert(n.rt, p, new RectHV(n.rect.xmin(), n.p.y(), n.rect.xmax(), n.rect.ymax()), true);
@@ -142,7 +142,22 @@ public class KdTree {
         if (rect == null) {
             throw new IllegalArgumentException("Argument is null");
         }
+        Queue<Point2D> q = new Queue<>();
+        range(root, rect, q);
+        return q;
+    }
 
+    private void range(Node n, RectHV rect, Queue<Point2D> q) {
+        if (n != null) {
+            if (!n.rect.intersects(rect)) {
+                return;
+            }
+            if (rect.contains(n.p)) {
+                q.enqueue(n.p);
+            }
+            range(n.lb, rect, q);
+            range(n.rt, rect, q);
+        }
     }
 
     /**
@@ -154,8 +169,40 @@ public class KdTree {
         if (p == null) {
             throw new IllegalArgumentException("Argument is null");
         }
-
+        return nearest(root, p, root.p, true);
     }
+
+    private Point2D nearest(Node n, Point2D p, Point2D win, boolean xLevel) {
+        if (n == null)
+            return win;
+        if (xLevel) {
+            if (p.x() < n.p.x()) {
+                win = nearest(n.rt, p, win, false);
+                if (n.lb != null && win.distanceSquaredTo(p) > n.lb.rect.distanceSquaredTo(p)) {
+                    win = nearest(n.lb, p, win, false);
+                }
+            } else {
+                win = nearest(n.lb, p, win, false);
+                if (n.rt != null && win.distanceSquaredTo(p) > n.rt.rect.distanceSquaredTo(p)) {
+                    win = nearest(n.rt, p, win, false);
+                }
+            }
+        } else {
+            if (p.y() < n.p.y()) {
+                win = nearest(n.lb, p, win, true);
+                if (n.lb != null && win.distanceSquaredTo(p) > n.lb.rect.distanceSquaredTo(p)) {
+                    win = nearest(n.lb, p, win,  true);
+                }
+            } else {
+                win = nearest(n.lb, p, win, true);
+                if (n.rt != null && win.distanceSquaredTo(p) > n.rt.rect.distanceSquaredTo(p)) {
+                    win = nearest(n.rt, p, win, true);
+                }
+            }
+        }
+        return win;
+    }
+
 
     /**
      * Unit testing of the methods (optional).
